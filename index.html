@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>AXXIN CLAN ANWESENHEIT</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1a1a;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  h1 {
+    color: #d4af37;
+    padding: 18px 0 10px;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #d4af3755;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  button {
+    background: #2a2a2a;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    transition: background 0.15s;
+  }
+  button:hover { background: #3a3a2a; }
+
+  #users-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  .name-section {
+    background: #252525;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 12px 10px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .name-section.warn   { border-color: orange; }
+  .name-section.danger { border-color: red; background: #2e1a1a; }
+
+  .name-section h2 {
+    color: #d4af37;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    word-break: break-all;
+    cursor: default;
+  }
+  .edit-mode .name-section h2 { cursor: pointer; text-decoration: underline dashed; }
+
+  .absent-info { color: #ccc; font-size: 0.82rem; margin-bottom: 6px; }
+
+  .absent-btns { display: flex; gap: 5px; justify-content: center; margin-bottom: 8px; }
+  .absent-btns button { padding: 4px 10px; font-size: 0.8rem; }
+
+  .row-label { color: #999; font-size: 0.75rem; margin-bottom: 2px; }
+
+  .toggle-btn {
+    background: #333;
+    color: #aaa;
+    border: 1px solid #555;
+    width: 36px; height: 28px;
+    border-radius: 4px;
+    margin: 0 auto 8px;
+    display: block;
+    font-size: 1rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .toggle-btn.active { background: #1e6e1e; color: #fff; border-color: #2ecc71; }
+
+  .delete-btn {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: #700;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 22px; height: 22px;
+    font-size: 0.75rem;
+    display: none;
+    padding: 0;
+  }
+  .edit-mode .delete-btn { display: block; }
+
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #d4af3744;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+
+<h1>⚔️ AXXIN CLAN ANWESENHEIT</h1>
+
+<div class="top-bar">
+  <input type="text" id="searchInput" placeholder="Person suchen..." style="padding: 6px 12px; background: #2a2a2a; color: #d4af37; border: 1px solid #d4af37; border-radius: 5px; font-size: 0.85rem;" onkeyup="updateSearch()">
+  <button onclick="resetAll()">Reset Alles</button>
+  <button onclick="resetPresent()">Reset Anwesend</button>
+</div>
+
+<div id="users-container"></div>
+
+<div class="bottom-bar">
+  <button onclick="toggleEdit()" id="editBtn">✏️ Bearbeiten</button>
+  <button onclick="setFilter('all')" id="f-all">Alle</button>
+  <button onclick="setFilter('warn')" id="f-warn">⚠️ 2/3</button>
+  <button onclick="setFilter('danger')" id="f-danger">🚫 3/3</button>
+  <button onclick="downloadData()" id="saveBtn" style="display:none">💾 Speichern</button>
+  <button onclick="addUser()" id="addBtn" style="display:none">➕</button>
+</div>
+
+<script>
+let editMode = false;
+let filter = "all";
+let searchFilter = "";
+let users = [];
+
+const defaultUsers = [
+  {"name":"Bobby", "absent":0, "present":false, "excuse":false},
+  {"name":"Mahmoud", "absent":0, "present":false, "excuse":false},
+  {"name":"sgefinley", "absent":0, "present":false, "excuse":false},
+  {"name":"memtzer", "absent":0, "present":false, "excuse":false},
+  {"name":"chxrs", "absent":0, "present":false, "excuse":false},
+  {"name":"TyroTV", "absent":1, "present":false, "excuse":false},
+  {"name":"Bekkermann", "absent":0, "present":false, "excuse":false},
+  {"name":"Eyuporo", "absent":0, "present":false, "excuse":false},
+  {"name":"speedyHG", "absent":0, "present":false, "excuse":false},
+  {"name":"IOMonkeyyy", "absent":1, "present":false, "excuse":false},
+  {"name":"Schnitzel", "absent":0, "present":false, "excuse":false},
+  {"name":"Lord_emea", "absent":0, "present":false, "excuse":false},
+  {"name":"A1MN", "absent":1, "present":false, "excuse":false},
+  {"name":"Ibrahimovic", "absent":0, "present":false, "excuse":false},
+  {"name":"Tobi_On_Drip", "absent":3, "present":false, "excuse":false},
+  {"name":"Onkel_Vali", "absent":0, "present":true, "excuse":false},
+  {"name":"Nvklas", "absent":0, "present":true, "excuse":false},
+  {"name":"Koleggekaktus", "absent":0, "present":false, "excuse":false},
+  {"name":"XxLouisxX", "absent":1, "present":false, "excuse":false},
+  {"name":"Tim_Tonardo", "absent":0, "present":false, "excuse":false},
+  {"name":"Matrixx", "absent":1, "present":false, "excuse":false},
+  {"name":"VortexSlay", "absent":2, "present":false, "excuse":false},
+  {"name":"Thorgehd7", "absent":0, "present":false, "excuse":false},
+  {"name":"IRONANDY", "absent":0, "present":false, "excuse":true},
+  {"name":"GARADOS", "absent":1, "present":false, "excuse":false},
+  {"name":"Crypto_555", "absent":2, "present":false, "excuse":false},
+  {"name":"Txmmex_", "absent":1, "present":false, "excuse":false},
+  {"name":"DDDerdeniss", "absent":3, "present":true, "excuse":true},
+  {"name":"VisionMax", "absent":0, "present":true, "excuse":false},
+  {"name":"Cleesy_ghg", "absent":0, "present":false, "excuse":false},
+  {"name":"spangee", "absent":1, "present":false, "excuse":false},
+  {"name":"q0sk", "absent":1, "present":false, "excuse":false},
+  {"name":"KXBXLXY24", "absent":2, "present":true, "excuse":false},
+  {"name":"xsyrozx", "absent":0, "present":true, "excuse":false},
+  {"name":"GraphVIP", "absent":0, "present":true, "excuse":false},
+  {"name":"Nikolaus118", "absent":0, "present":true, "excuse":false},
+  {"name":"BenjamIn_94", "absent":0, "present":true, "excuse":false},
+  {"name":"Schiggi84", "absent":0, "present":true, "excuse":false},
+  {"name":"miesegogo", "absent":0, "present":true, "excuse":false},
+  {"name":"Velyndor", "absent":1, "present":false, "excuse":false},
+  {"name":"GUTHILDEGLOCK", "absent":1, "present":false, "excuse":false},
+  {"name":"00Adix", "absent":2, "present":false, "excuse":false},
+  {"name":"Aaroniy11", "absent":0, "present":true, "excuse":false},
+  {"name":"Notsncwy", "absent":2, "present":false, "excuse":false},
+  {"name":"TobNik12", "absent":1, "present":false, "excuse":false},
+  {"name":"Bylxi", "absent":1, "present":false, "excuse":false},
+  {"name":"FABIAN_st16", "absent":1, "present":false, "excuse":false},
+  {"name":"Konnosaurus", "absent":0, "present":false, "excuse":true},
+  {"name":"jxn14", "absent":3, "present":false, "excuse":false},
+  {"name":"wolle", "absent":1, "present":false, "excuse":false},
+  {"name":"v12toni", "absent":0, "present":true, "excuse":false},
+  {"name":"Freeensar", "absent":0, "present":true, "excuse":false},
+  {"name":"Finn99876", "absent":1, "present":false, "excuse":false},
+  {"name":"EnkelTrickTV", "absent":0, "present":false, "excuse":false},
+  {"name":"Vule", "absent":0, "present":true, "excuse":false},
+  {"name":"NicoKA_25", "absent":0, "present":true, "excuse":false},
+  {"name":"Ropirat", "absent":1, "present":false, "excuse":false},
+  {"name":"RAMENMaster", "absent":1, "present":false, "excuse":false},
+  {"name":"Starraven", "absent":1, "present":false, "excuse":false},
+  {"name":"tomek", "absent":0, "present":true, "excuse":false},
+  {"name":"zenyiy", "absent":0, "present":true, "excuse":false}
+];
+
+async function loadUsers() {
+  // Zuerst aus localStorage laden (lokale Änderungen)
+  const saved = localStorage.getItem('users');
+  if (saved) {
+    try {
+      users = JSON.parse(saved);
+      sortUsers();
+      render();
+      return;
+    } catch (error) {
+      console.error("Fehler beim Laden aus localStorage:", error);
+    }
+  }
+  
+  // Sonst von users.json laden
+  try {
+    const response = await fetch('users.json');
+    if (response.ok) {
+      users = await response.json();
+    } else {
+      users = JSON.parse(JSON.stringify(defaultUsers));
+    }
+  } catch (error) {
+    users = JSON.parse(JSON.stringify(defaultUsers));
+  }
+  sortUsers();
+  render();
+}
+
+function saveData() {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
+function downloadData() {
+  const dataStr = JSON.stringify(users, null, 2);
+  const dataBlob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(dataBlob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'users.json';
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+const container = document.getElementById("users-container");
+
+function sortUsers() {
+  users.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase(), 'de'));
+}
+
+function render() {
+  container.innerHTML = "";
+  let filtered = users;
+  if (filter === "warn")   filtered = users.filter(u => u.absent == 2);
+  if (filter === "danger") filtered = users.filter(u => u.absent == 3);
+  
+  if (searchFilter) {
+    filtered = filtered.filter(u => u.name.toLowerCase().includes(searchFilter.toLowerCase()));
+  }
+
+  filtered.forEach(u => {
+    let index = users.indexOf(u);
+    let cls = u.absent == 2 ? "warn" : u.absent == 3 ? "danger" : "";
+    let sym = u.absent == 2 ? "⚠️" : u.absent == 3 ? "🚫" : "";
+
+    let div = document.createElement("div");
+    div.className = "name-section " + cls;
+    div.innerHTML = `
+      <button class="delete-btn" onclick="deleteUser(${index})">✕</button>
+      <h2 onclick="editName(${index})">${u.name}</h2>
+      <div class="absent-info">Abwesend: ${u.absent} / 3 ${sym}</div>
+      <div class="absent-btns">
+        <button onclick="inc(${index})">+ Abwesend</button>
+        <button onclick="dec(${index})">−</button>
+      </div>
+      <div class="row-label">Anwesend</div>
+      <button class="toggle-btn ${u.present ? 'active' : ''}" onclick="togglePresent(${index})">✔</button>
+      <div class="row-label">Entschuldigt</div>
+      <button class="toggle-btn ${u.excuse ? 'active' : ''}" onclick="toggleExcuse(${index})">✔</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function setFilter(f) {
+  filter = f;
+  ["all","warn","danger"].forEach(x => document.getElementById("f-"+x).style.background = "");
+  document.getElementById("f-"+f).style.background = "#3a3a2a";
+  render();
+}
+
+function updateSearch() {
+  searchFilter = document.getElementById("searchInput").value;
+  render();
+}
+
+function toggleEdit() {
+  editMode = !editMode;
+  document.body.classList.toggle("edit-mode", editMode);
+  document.getElementById("addBtn").style.display = editMode ? "inline" : "none";
+  document.getElementById("saveBtn").style.display = editMode ? "inline" : "none";
+  document.getElementById("editBtn").textContent = editMode ? "✏️ Fertig" : "✏️ Bearbeiten";
+  document.getElementById("editBtn").style.background = editMode ? "#3a3a2a" : "";
+}
+
+function addUser() {
+  let n = prompt("Name:");
+  if (!n) return;
+  users.push({name: n, absent: 0, present: false, excuse: false});
+  sortUsers();
+  saveData();
+  render();
+}
+
+function deleteUser(i) {
+  if (confirm("Löschen?")) {
+    users.splice(i, 1);
+    saveData();
+    render();
+  }
+}
+
+function editName(i) {
+  if (!editMode) return;
+  let n = prompt("Neuer Name:", users[i].name);
+  if (n) {
+    users[i].name = n;
+    sortUsers();
+    saveData();
+    render();
+  }
+}
+
+function inc(i) {
+  if (users[i].absent < 3) users[i].absent++;
+  saveData();
+  render();
+}
+
+function dec(i) {
+  if (users[i].absent > 0) users[i].absent--;
+  saveData();
+  render();
+}
+
+function togglePresent(i) {
+  users[i].present = !users[i].present;
+  if (users[i].present) users[i].absent = 0;
+  saveData();
+  render();
+}
+
+function toggleExcuse(i) {
+  users[i].excuse = !users[i].excuse;
+  saveData();
+  render();
+}
+
+function resetAll() {
+  if (confirm("Alles zurücksetzen?")) {
+    users.forEach(u => { u.absent = 0; u.present = false; u.excuse = false; });
+    saveData();
+    render();
+  }
+}
+
+function resetPresent() {
+  users.forEach(u => u.present = false);
+  saveData();
+  render();
+}
+
+document.getElementById("f-all").style.background = "#3a3a2a";
+loadUsers();
+</script>
+</body>
+</html>
