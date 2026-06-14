@@ -134,6 +134,8 @@
   <button onclick="setFilter('warn')" id="f-warn">⚠️ 2/3</button>
   <button onclick="setFilter('danger')" id="f-danger">🚫 3/3</button>
   <button onclick="downloadData()" id="saveBtn" style="display:none">💾 Speichern</button>
+  <button onclick="saveAndPush()" id="pushBtn" style="display:none">💾🔁 Speichern & Push</button>
+  <button onclick="saveToServer()" id="localSaveBtn" style="display:none">💾 Lokal speichern</button>
   <button onclick="addUser()" id="addBtn" style="display:none">➕</button>
 </div>
 
@@ -251,6 +253,77 @@ function downloadData() {
   URL.revokeObjectURL(url);
 }
 
+function saveAndPush() {
+  saveData();
+  // Versuche Werte aus sessionStorage zu lesen
+  let token = sessionStorage.getItem('githubToken');
+  let repo = sessionStorage.getItem('githubRepo');
+  let path = sessionStorage.getItem('githubPath') || 'users.json';
+  let message = sessionStorage.getItem('githubMessage') || 'Update users.json via web';
+
+  if (!token) token = prompt('GitHub Token (wird nur diese Sitzung gehalten):');
+  if (!token) return;
+  if (!repo) repo = prompt('Repository (owner/repo):', 'owner/repo');
+  if (!repo) return;
+  // optional: ask whether to remember for session
+  const remember = confirm('Token und Repo für diese Sitzung merken?');
+  if (remember) {
+    sessionStorage.setItem('githubToken', token);
+    sessionStorage.setItem('githubRepo', repo);
+    sessionStorage.setItem('githubPath', path);
+    sessionStorage.setItem('githubMessage', message);
+  }
+
+  pushToGitHubWithParams(token, repo, path, message);
+}
+
+async function pushToGitHubWithParams(token, repo, path, message) {
+  try {
+    const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`);
+    if (!getRes.ok) throw new Error('Datei nicht gefunden oder Zugriff verweigert');
+    const getData = await getRes.json();
+    const sha = getData.sha;
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(users, null, 2))));
+
+    const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message, content, sha })
+    });
+
+    if (!putRes.ok) {
+      const txt = await putRes.text();
+      throw new Error(txt);
+    }
+    alert('Erfolgreich gepusht.');
+  } catch (e) {
+    alert('Push fehlgeschlagen: ' + e.message);
+  }
+}
+
+async function saveToServer() {
+  saveData();
+  const secret = prompt('Server-Secret (falls konfiguriert), leer lassen sonst:');
+  try {
+    const res = await fetch('/save', {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, secret ? { 'X-Secret': secret } : {}),
+      body: JSON.stringify(users)
+    });
+    if (!res.ok) {
+      const txt = await res.text();
+      throw new Error(txt || res.statusText);
+    }
+    alert('Erfolgreich lokal gespeichert (users.json aktualisiert).');
+  } catch (e) {
+    alert('Speichern auf Server fehlgeschlagen: ' + e.message);
+  }
+}
+
 const container = document.getElementById("users-container");
 
 function sortUsers() {
@@ -308,6 +381,8 @@ function toggleEdit() {
   document.body.classList.toggle("edit-mode", editMode);
   document.getElementById("addBtn").style.display = editMode ? "inline" : "none";
   document.getElementById("saveBtn").style.display = editMode ? "inline" : "none";
+  document.getElementById("pushBtn").style.display = editMode ? "inline" : "none";
+  document.getElementById("localSaveBtn").style.display = editMode ? "inline" : "none";
   document.getElementById("editBtn").textContent = editMode ? "✏️ Fertig" : "✏️ Bearbeiten";
   document.getElementById("editBtn").style.background = editMode ? "#3a3a2a" : "";
 }
