@@ -1,14 +1,14 @@
 [
   {
     "name": "00Adix",
-    "absent": 0,
-    "present": true,
+    "absent": 2,
+    "present": false,
     "excuse": false
   },
   {
     "name": "A1MN",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false
   },
   {
@@ -32,25 +32,25 @@
   {
     "name": "Bobby",
     "absent": 0,
-    "present": true,
-    "excuse": false
+    "present": false,
+    "excuse": true
   },
   {
     "name": "Bylxi",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false
   },
   {
     "name": "chxrs",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
     "name": "Cleesy_ghg",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -61,14 +61,14 @@
   },
   {
     "name": "DDDerdeniss",
-    "absent": 0,
+    "absent": 3,
     "present": false,
     "excuse": false
   },
   {
     "name": "EnkelTrickTV",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -92,7 +92,7 @@
   {
     "name": "Freeensar",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -104,7 +104,7 @@
   {
     "name": "GraphVIP",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -115,7 +115,7 @@
   },
   {
     "name": "Ibrahimovic",
-    "absent": 0,
+    "absent": 2,
     "present": false,
     "excuse": false
   },
@@ -140,7 +140,7 @@
   {
     "name": "Koleggekaktus",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -158,13 +158,13 @@
   {
     "name": "Lord_emea",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
     "name": "Mahmoud",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -175,7 +175,7 @@
   },
   {
     "name": "memtzer",
-    "absent": 0,
+    "absent": 1,
     "present": false,
     "excuse": false
   },
@@ -240,7 +240,7 @@
     "excuse": false
   },
   {
-    "name": "Schnitzel",
+    "name": "Schnitzel341",
     "absent": 0,
     "present": false,
     "excuse": false
@@ -248,7 +248,7 @@
   {
     "name": "sgefinley",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -260,7 +260,7 @@
   {
     "name": "speedyHG",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
@@ -278,7 +278,7 @@
   {
     "name": "Tim_Tonardo",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false
   },
   {
