@@ -133,6 +133,7 @@
   <button onclick="setFilter('all')" id="f-all">Alle</button>
   <button onclick="setFilter('warn')" id="f-warn">⚠️ 2/3</button>
   <button onclick="setFilter('danger')" id="f-danger">🚫 3/3</button>
+  <button onclick="markUnaffectedAbsent()" id="markUnaffectedBtn" style="display:none">Nicht betroffene +1 Abw.</button>
   <button onclick="saveToServer()" id="localSaveBtn" style="display:none">💾 Lokal speichern</button>
   <button onclick="addUser()" id="addBtn" style="display:none">➕</button>
 </div>
@@ -142,6 +143,10 @@ let editMode = false;
 let filter = "all";
 let searchFilter = "";
 let users = [];
+
+function resetEditFlags() {
+  users.forEach(u => u.__edited = false);
+}
 
 const defaultUsers = [
   {"name":"Bobby", "absent":0, "present":false, "excuse":false},
@@ -213,6 +218,7 @@ async function loadUsers() {
   if (saved) {
     try {
       users = JSON.parse(saved);
+      users.forEach(u => u.__edited = false);
       sortUsers();
       render();
       return;
@@ -232,12 +238,13 @@ async function loadUsers() {
   } catch (error) {
     users = JSON.parse(JSON.stringify(defaultUsers));
   }
+  users.forEach(u => u.__edited = false);
   sortUsers();
   render();
 }
 
 function saveData() {
-  localStorage.setItem('users', JSON.stringify(users));
+  localStorage.setItem('users', JSON.stringify(users, (k, v) => k === '__edited' ? undefined : v));
 }
 
 async function saveToServer() {
@@ -282,18 +289,30 @@ function render() {
 
     let div = document.createElement("div");
     div.className = "name-section " + cls;
+    const nameAction = editMode ? `onclick="editName(${index})"` : "";
+    const deleteBtn = editMode ? `<button class="delete-btn" onclick="deleteUser(${index})">✕</button>` : "";
+    const absentButtons = editMode
+      ? `<div class="absent-btns">
+          <button onclick="inc(${index})">+ Abwesend</button>
+          <button onclick="dec(${index})">−</button>
+        </div>`
+      : "";
+    const presentControl = editMode
+      ? `<button class="toggle-btn ${u.present ? 'active' : ''}" onclick="togglePresent(${index})">✔</button>`
+      : `<button class="toggle-btn ${u.present ? 'active' : ''}" disabled>✔</button>`;
+    const excuseControl = editMode
+      ? `<button class="toggle-btn ${u.excuse ? 'active' : ''}" onclick="toggleExcuse(${index})">✔</button>`
+      : `<button class="toggle-btn ${u.excuse ? 'active' : ''}" disabled>✔</button>`;
+
     div.innerHTML = `
-      <button class="delete-btn" onclick="deleteUser(${index})">✕</button>
-      <h2 onclick="editName(${index})">${u.name}</h2>
+      ${deleteBtn}
+      <h2 ${nameAction}>${u.name}</h2>
       <div class="absent-info">Abwesend: ${u.absent} / 3 ${sym}</div>
-      <div class="absent-btns">
-        <button onclick="inc(${index})">+ Abwesend</button>
-        <button onclick="dec(${index})">−</button>
-      </div>
+      ${absentButtons}
       <div class="row-label">Anwesend</div>
-      <button class="toggle-btn ${u.present ? 'active' : ''}" onclick="togglePresent(${index})">✔</button>
+      ${presentControl}
       <div class="row-label">Entschuldigt</div>
-      <button class="toggle-btn ${u.excuse ? 'active' : ''}" onclick="toggleExcuse(${index})">✔</button>
+      ${excuseControl}
     `;
     container.appendChild(div);
   });
@@ -313,26 +332,31 @@ function updateSearch() {
 
 function toggleEdit() {
   editMode = !editMode;
+  if (editMode) {
+    users.forEach(u => u.__edited = false);
+  }
   document.body.classList.toggle("edit-mode", editMode);
   document.getElementById("addBtn").style.display = editMode ? "inline" : "none";
   document.getElementById("localSaveBtn").style.display = editMode ? "inline" : "none";
+  document.getElementById("markUnaffectedBtn").style.display = editMode ? "inline" : "none";
   document.getElementById("editBtn").textContent = editMode ? "✏️ Fertig" : "✏️ Bearbeiten";
   document.getElementById("editBtn").style.background = editMode ? "#3a3a2a" : "";
+  render();
 }
 
 function addUser() {
   let n = prompt("Name:");
   if (!n) return;
-  users.push({name: n, absent: 0, present: false, excuse: false});
+  const newUser = {name: n, absent: 0, present: false, excuse: false, __edited: true};
+  users.push(newUser);
   sortUsers();
-  saveData();
   render();
 }
 
 function deleteUser(i) {
+  if (!editMode) return;
   if (confirm("Löschen?")) {
     users.splice(i, 1);
-    saveData();
     render();
   }
 }
@@ -342,48 +366,66 @@ function editName(i) {
   let n = prompt("Neuer Name:", users[i].name);
   if (n) {
     users[i].name = n;
+    users[i].__edited = true;
     sortUsers();
-    saveData();
     render();
   }
 }
 
+function markUnaffectedAbsent() {
+  if (!editMode) return;
+  if (!confirm("Allen nicht bearbeiteten Personen (außer Entschuldigte) +1 Abwesenheit geben?")) return;
+  users.forEach(u => {
+    if (!u.__edited && !u.excuse && u.absent < 3) {
+      u.present = false;
+      u.absent++;
+    }
+  });
+  render();
+}
+
 function inc(i) {
-  if (users[i].absent < 3) users[i].absent++;
-  saveData();
+  if (!editMode) return;
+  if (users[i].absent < 3) {
+    users[i].absent++;
+    users[i].__edited = true;
+  }
   render();
 }
 
 function dec(i) {
-  if (users[i].absent > 0) users[i].absent--;
-  saveData();
+  if (!editMode) return;
+  if (users[i].absent > 0) {
+    users[i].absent--;
+    users[i].__edited = true;
+  }
   render();
 }
 
 function togglePresent(i) {
+  if (!editMode) return;
   users[i].present = !users[i].present;
   if (users[i].present) users[i].absent = 0;
-  saveData();
+  users[i].__edited = true;
   render();
 }
 
 function toggleExcuse(i) {
+  if (!editMode) return;
   users[i].excuse = !users[i].excuse;
-  saveData();
+  users[i].__edited = true;
   render();
 }
 
 function resetAll() {
   if (confirm("Alles zurücksetzen?")) {
     users.forEach(u => { u.absent = 0; u.present = false; u.excuse = false; });
-    saveData();
     render();
   }
 }
 
 function resetPresent() {
   users.forEach(u => u.present = false);
-  saveData();
   render();
 }
 

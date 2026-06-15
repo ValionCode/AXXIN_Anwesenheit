@@ -40,3 +40,6 @@ npm.cmd start
 Hinweise
 - Diese Lösung speichert die Datei direkt auf der Festplatte des Rechners, auf dem der Server läuft. Teile das Secret nicht und betreibe den Server nur in sicherer Umgebung.
 - Wenn du möchtest, kann ich statt des lokalen Server eine sichere zentrale Lösung mit Authentifizierung bauen.
+
+
+netstat -ano | findstr :3000 in powershell falls server start nicht funktioniert
