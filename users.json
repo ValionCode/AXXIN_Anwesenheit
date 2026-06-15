@@ -137,7 +137,7 @@
     "absent": 2,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "IOMonkeyyy",
@@ -155,10 +155,10 @@
   },
   {
     "name": "Koleggekaktus",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": true
   },
   {
     "name": "Konnosaurus",
@@ -295,7 +295,7 @@
   },
   {
     "name": "Starraven",
-    "absent": 2,
+    "absent": 1,
     "present": false,
     "excuse": false,
     "__edited": false
@@ -354,7 +354,7 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Velyndor",
