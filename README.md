@@ -5,21 +5,37 @@ Ziel
 
 Sichere lokale Lösung (empfohlen)
 1. Node.js installieren (>=14).
-2. Abhängigkeiten installieren und Server starten:
+2. Abhängigkeiten installieren:
 
-```bash
+```powershell
 cd AXXIN_Anwesenheit
 npm install
-# optional: setze ein Secret zur Absicherung, z.B. SAVE_SECRET=meinSecret
-SAVE_SECRET=meinSecret npm start
-# oder ohne Secret:
-npm start
 ```
 
-3. Öffne die Seite im Browser: http://localhost:3000
-4. Klicke `✏️ Bearbeiten`, mach Änderungen und klicke `💾 Lokal speichern`.
-	- Falls du beim Start `SAVE_SECRET` gesetzt hast, gib beim Speichern das Secret ein.
-5. Nun ist `users.json` auf der Festplatte aktualisiert — du kannst `git add users.json && git commit -m "Update" && git push` ausführen.
+3. Server starten:
+
+- Empfohlen unter Windows (PowerShell-Execution-Policy wird nicht benötigt):
+
+```powershell
+start-node-server.bat
+```
+
+- Wenn du ein Secret verwenden möchtest:
+
+```powershell
+start-server.bat meinSecret
+```
+
+- Falls `npm start` nicht funktioniert, verwende stattdessen:
+
+```powershell
+npm.cmd start
+```
+
+4. Öffne die Seite im Browser: http://localhost:3000
+5. Klicke `✏️ Bearbeiten`, mach Änderungen und klicke `💾 Lokal speichern`.
+   - Falls du beim Start `SAVE_SECRET` gesetzt hast, gib beim Speichern das Secret ein.
+6. Nun ist `users.json` auf der Festplatte aktualisiert — du kannst `git add users.json && git commit -m "Update" && git push` ausführen.
 
 Hinweise
 - Diese Lösung speichert die Datei direkt auf der Festplatte des Rechners, auf dem der Server läuft. Teile das Secret nicht und betreibe den Server nur in sicherer Umgebung.

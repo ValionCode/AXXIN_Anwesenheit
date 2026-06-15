@@ -1,63 +1,368 @@
 [
-  {"name":"Bobby", "absent":0, "present":false, "excuse":false},
-  {"name":"Mahmoud", "absent":0, "present":false, "excuse":false},
-  {"name":"sgefinley", "absent":0, "present":false, "excuse":false},
-  {"name":"memtzer", "absent":0, "present":false, "excuse":false},
-  {"name":"chxrs", "absent":0, "present":false, "excuse":false},
-  {"name":"TyroTV", "absent":1, "present":false, "excuse":false},
-  {"name":"Bekkermann", "absent":0, "present":false, "excuse":false},
-  {"name":"Eyuporo", "absent":0, "present":false, "excuse":false},
-  {"name":"speedyHG", "absent":0, "present":false, "excuse":false},
-  {"name":"IOMonkeyyy", "absent":1, "present":false, "excuse":false},
-  {"name":"Schnitzel", "absent":0, "present":false, "excuse":false},
-  {"name":"Lord_emea", "absent":0, "present":false, "excuse":false},
-  {"name":"A1MN", "absent":1, "present":false, "excuse":false},
-  {"name":"Ibrahimovic", "absent":0, "present":false, "excuse":false},
-  {"name":"Tobi_On_Drip", "absent":3, "present":false, "excuse":false},
-  {"name":"Onkel_Vali", "absent":0, "present":true, "excuse":false},
-  {"name":"Nvklas", "absent":0, "present":true, "excuse":false},
-  {"name":"Koleggekaktus", "absent":0, "present":false, "excuse":false},
-  {"name":"XxLouisxX", "absent":1, "present":false, "excuse":false},
-  {"name":"Tim_Tonardo", "absent":0, "present":false, "excuse":false},
-  {"name":"Matrixx", "absent":1, "present":false, "excuse":false},
-  {"name":"VortexSlay", "absent":2, "present":false, "excuse":false},
-  {"name":"Thorgehd7", "absent":0, "present":false, "excuse":false},
-  {"name":"IRONANDY", "absent":0, "present":false, "excuse":true},
-  {"name":"GARADOS", "absent":1, "present":false, "excuse":false},
-  {"name":"Crypto_555", "absent":2, "present":false, "excuse":false},
-  {"name":"Txmmex_", "absent":1, "present":false, "excuse":false},
-  {"name":"DDDerdeniss", "absent":3, "present":true, "excuse":true},
-  {"name":"VisionMax", "absent":0, "present":true, "excuse":false},
-  {"name":"Cleesy_ghg", "absent":0, "present":false, "excuse":false},
-  {"name":"spangee", "absent":1, "present":false, "excuse":false},
-  {"name":"q0sk", "absent":1, "present":false, "excuse":false},
-  {"name":"KXBXLXY24", "absent":2, "present":true, "excuse":false},
-  {"name":"xsyrozx", "absent":0, "present":true, "excuse":false},
-  {"name":"GraphVIP", "absent":0, "present":true, "excuse":false},
-  {"name":"Nikolaus118", "absent":0, "present":true, "excuse":false},
-  {"name":"BenjamIn_94", "absent":0, "present":true, "excuse":false},
-  {"name":"Schiggi84", "absent":0, "present":true, "excuse":false},
-  {"name":"miesegogo", "absent":0, "present":true, "excuse":false},
-  {"name":"Velyndor", "absent":1, "present":false, "excuse":false},
-  {"name":"GUTHILDEGLOCK", "absent":1, "present":false, "excuse":false},
-  {"name":"00Adix", "absent":2, "present":false, "excuse":false},
-  {"name":"Aaroniy11", "absent":0, "present":true, "excuse":false},
-  {"name":"Notsncwy", "absent":2, "present":false, "excuse":false},
-  {"name":"TobNik12", "absent":1, "present":false, "excuse":false},
-  {"name":"Bylxi", "absent":1, "present":false, "excuse":false},
-  {"name":"FABIAN_st16", "absent":1, "present":false, "excuse":false},
-  {"name":"Konnosaurus", "absent":0, "present":false, "excuse":true},
-  {"name":"jxn14", "absent":3, "present":false, "excuse":false},
-  {"name":"wolle", "absent":1, "present":false, "excuse":false},
-  {"name":"v12toni", "absent":0, "present":true, "excuse":false},
-  {"name":"Freeensar", "absent":0, "present":true, "excuse":false},
-  {"name":"Finn99876", "absent":1, "present":false, "excuse":false},
-  {"name":"EnkelTrickTV", "absent":0, "present":false, "excuse":false},
-  {"name":"Vule", "absent":0, "present":true, "excuse":false},
-  {"name":"NicoKA_25", "absent":0, "present":true, "excuse":false},
-  {"name":"Ropirat", "absent":1, "present":false, "excuse":false},
-  {"name":"RAMENMaster", "absent":1, "present":false, "excuse":false},
-  {"name":"Starraven", "absent":1, "present":false, "excuse":false},
-  {"name":"tomek", "absent":0, "present":true, "excuse":false},
-  {"name":"zenyiy", "absent":0, "present":true, "excuse":false}
+  {
+    "name": "00Adix",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "A1MN",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Aaroniy11",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Bekkermann",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "BenjamIn_94",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Bobby",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Bylxi",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "chxrs",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Cleesy_ghg",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Crypto_555",
+    "absent": 2,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "DDDerdeniss",
+    "absent": 3,
+    "present": true,
+    "excuse": true
+  },
+  {
+    "name": "EnkelTrickTV",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Eyuporo",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "FABIAN_st16",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Finn99876",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Freeensar",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "GARADOS",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "GraphVIP",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "GUTHILDEGLOCK",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Ibrahimovic",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "IOMonkeyyy",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "IRONANDY",
+    "absent": 0,
+    "present": false,
+    "excuse": true
+  },
+  {
+    "name": "jxn14",
+    "absent": 3,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Koleggekaktus",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Konnosaurus",
+    "absent": 0,
+    "present": false,
+    "excuse": true
+  },
+  {
+    "name": "KXBXLXY24",
+    "absent": 2,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Lord_emea",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Mahmoud",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Matrixx",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "memtzer",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "miesegogo",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "NicoKA_25",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Nikolaus118",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Notsncwy",
+    "absent": 2,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Nvklas",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Onkel_Vali",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "q0sk",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "RAMENMaster",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Ropirat",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Schiggi84",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Schnitzel",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "sgefinley",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "spangee",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "speedyHG",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Starraven",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Thorgehd7",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Tim_Tonardo",
+    "absent": 0,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Tobi_On_Drip",
+    "absent": 3,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "TobNik12",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "tomek",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Txmmex_",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "TyroTV",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "v12toni",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "Velyndor",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "VisionMax",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "VortexSlay",
+    "absent": 2,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "Vule",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "wolle",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "xsyrozx",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  },
+  {
+    "name": "XxLouisxX",
+    "absent": 1,
+    "present": false,
+    "excuse": false
+  },
+  {
+    "name": "zenyiy",
+    "absent": 0,
+    "present": true,
+    "excuse": false
+  }
 ]
