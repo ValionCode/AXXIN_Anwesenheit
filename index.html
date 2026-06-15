@@ -213,23 +213,8 @@ const defaultUsers = [
 ];
 
 async function loadUsers() {
-  // Zuerst aus localStorage laden (lokale Änderungen)
-  const saved = localStorage.getItem('users');
-  if (saved) {
-    try {
-      users = JSON.parse(saved);
-      users.forEach(u => u.__edited = false);
-      sortUsers();
-      render();
-      return;
-    } catch (error) {
-      console.error("Fehler beim Laden aus localStorage:", error);
-    }
-  }
-  
-  // Sonst von users.json laden
   try {
-    const response = await fetch('users.json');
+    const response = await fetch('users.json', { cache: 'no-store' });
     if (response.ok) {
       users = await response.json();
     } else {
@@ -243,12 +228,7 @@ async function loadUsers() {
   render();
 }
 
-function saveData() {
-  localStorage.setItem('users', JSON.stringify(users, (k, v) => k === '__edited' ? undefined : v));
-}
-
 async function saveToServer() {
-  saveData();
   const secret = prompt('Server-Secret (falls konfiguriert), leer lassen sonst:');
   try {
     const res = await fetch('/save', {
