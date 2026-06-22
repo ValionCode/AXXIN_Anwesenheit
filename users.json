@@ -8,15 +8,15 @@
   },
   {
     "name": "Aaroniy11",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Bekkermann",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
@@ -25,33 +25,33 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Blenkii",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Bobby",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "Bylxi",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "chxrs",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
@@ -60,19 +60,19 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "DDDerdeniss",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "EnkelTrickTV",
-    "absent": 2,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
@@ -81,38 +81,45 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "FABIAN_st16",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "Finn99876",
+    "absent": 0,
+    "present": true,
+    "excuse": false,
+    "__edited": false
+  },
+  {
+    "name": "Freeensar",
     "absent": 1,
     "present": false,
     "excuse": false,
     "__edited": false
   },
   {
-    "name": "Freeensar",
-    "absent": 0,
-    "present": true,
-    "excuse": false,
-    "__edited": true
-  },
-  {
     "name": "GARADOS",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "GraphVIP",
+    "absent": 0,
+    "present": true,
+    "excuse": false,
+    "__edited": false
+  },
+  {
+    "name": "GutHildeGlock",
     "absent": 0,
     "present": true,
     "excuse": false,
@@ -123,54 +130,68 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "IRONANDY",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Koleggekaktus",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "Konnosaurus",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Lord_emea",
-    "absent": 2,
-    "present": false,
+    "absent": 0,
+    "present": true,
+    "excuse": false,
+    "__edited": false
+  },
+  {
+    "name": "Mafino1111",
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "Mahmoud",
-    "absent": 2,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "memtzer",
+    "absent": 1,
+    "present": false,
+    "excuse": false,
+    "__edited": false
+  },
+  {
+    "name": "mffMohammed",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "miesegogo",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
@@ -179,17 +200,10 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Nikolaus118",
-    "absent": 0,
-    "present": true,
-    "excuse": false,
-    "__edited": true
-  },
-  {
-    "name": "Notsncwy",
     "absent": 1,
     "present": false,
     "excuse": false,
@@ -200,54 +214,47 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Onkel_Vali",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "q0sk",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "RAMENMaster",
     "absent": 0,
-    "present": false,
-    "excuse": true,
-    "__edited": true
-  },
-  {
-    "name": "Ropirat",
-    "absent": 2,
-    "present": false,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "Schiggi84",
     "absent": 0,
-    "present": false,
-    "excuse": true,
-    "__edited": true
+    "present": true,
+    "excuse": false,
+    "__edited": false
   },
   {
     "name": "Schnitzel341",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "sgefinley",
-    "absent": 2,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
@@ -256,33 +263,33 @@
     "absent": 0,
     "present": false,
     "excuse": true,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "speedyHG",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Starraven",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Thorgehd7",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Tim_Tonardo",
-    "absent": 2,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
     "__edited": false
   },
@@ -298,18 +305,18 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "tomek",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "Txmmex_",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
     "__edited": false
@@ -319,19 +326,12 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "v12toni",
     "absent": 0,
     "present": true,
-    "excuse": false,
-    "__edited": true
-  },
-  {
-    "name": "Velyndor",
-    "absent": 3,
-    "present": false,
     "excuse": false,
     "__edited": false
   },
@@ -340,41 +340,41 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "VortexSlay",
     "absent": 0,
     "present": false,
-    "excuse": true,
+    "excuse": false,
     "__edited": false
   },
   {
     "name": "Vule",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Wild_Knackrack",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Wolle2010",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
     "__edited": false
   },
   {
     "name": "xkubiLoco",
-    "absent": 1,
+    "absent": 0,
     "present": false,
-    "excuse": false,
+    "excuse": true,
     "__edited": false
   },
   {
@@ -382,17 +382,24 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "XxLouisxX",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Zany",
+    "absent": 1,
+    "present": false,
+    "excuse": false,
+    "__edited": false
+  },
+  {
+    "name": "Zenthon",
     "absent": 0,
     "present": true,
     "excuse": false,
