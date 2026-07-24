@@ -11,7 +11,7 @@
     "absent": 0,
     "present": true,
     "excuse": true,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Blenkii",
@@ -110,6 +110,13 @@
     "present": false,
     "excuse": true,
     "__edited": false
+  },
+  {
+    "name": "Lu1SxX",
+    "absent": 0,
+    "present": false,
+    "excuse": false,
+    "__edited": true
   },
   {
     "name": "Mafino1111",
@@ -231,6 +238,13 @@
     "__edited": false
   },
   {
+    "name": "Stidex",
+    "absent": 0,
+    "present": false,
+    "excuse": false,
+    "__edited": true
+  },
+  {
     "name": "Thorgehd7",
     "absent": 0,
     "present": false,
@@ -284,7 +298,7 @@
     "absent": 0,
     "present": false,
     "excuse": true,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Wolle2010",
