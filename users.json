@@ -7,6 +7,13 @@
     "__edited": false
   },
   {
+    "name": "ben2amin",
+    "absent": 0,
+    "present": false,
+    "excuse": false,
+    "__edited": true
+  },
+  {
     "name": "BenjamIn_94",
     "absent": 0,
     "present": true,
@@ -116,7 +123,7 @@
     "absent": 0,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Mafino1111",
@@ -217,6 +224,13 @@
     "__edited": false
   },
   {
+    "name": "Skater2O",
+    "absent": 0,
+    "present": false,
+    "excuse": false,
+    "__edited": true
+  },
+  {
     "name": "spangee",
     "absent": 0,
     "present": true,
@@ -242,7 +256,7 @@
     "absent": 0,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false
   },
   {
     "name": "Thorgehd7",
@@ -308,11 +322,25 @@
     "__edited": false
   },
   {
+    "name": "X0justus0X",
+    "absent": 0,
+    "present": false,
+    "excuse": false,
+    "__edited": true
+  },
+  {
     "name": "xkubiLoco",
     "absent": 0,
     "present": false,
     "excuse": true,
     "__edited": false
+  },
+  {
+    "name": "xOfen21",
+    "absent": 0,
+    "present": false,
+    "excuse": false,
+    "__edited": true
   },
   {
     "name": "xsyrozx",
