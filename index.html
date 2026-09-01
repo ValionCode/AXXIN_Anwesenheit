@@ -44,6 +44,8 @@
   #users-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* make items in the same row equal height */
+    grid-auto-rows: 1fr;
     gap: 12px;
     padding: 10px 16px;
   }
@@ -55,6 +57,10 @@
     padding: 12px 10px;
     position: relative;
     transition: border-color 0.2s;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     min-height: 140px;
   }
   .name-section.warn   { border-color: orange; }
   .name-section.danger { border-color: red; background: #2e1a1a; }
@@ -70,9 +76,15 @@
 
   .absent-info { color: #ccc; font-size: 0.82rem; margin-bottom: 6px; }
 
+  .excuse-range { color:#ccc; font-size:0.78rem; margin-top:6px; }
+
   .absent-btns { display: flex; gap: 5px; justify-content: center; margin-bottom: 8px; }
   .absent-btns button { padding: 4px 10px; font-size: 0.8rem; }
 
+  .card-body { flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px; }
+  .card-footer { height: 40px; display: flex; align-items: center; justify-content: center; }
+  .name-section.no-excuse .card-body { justify-content: center; }
+  .name-section.has-excuse .card-body { justify-content: flex-start; }
   .row-label { color: #999; font-size: 0.75rem; margin-bottom: 2px; }
 
   .toggle-btn {
@@ -131,8 +143,8 @@
 <div class="bottom-bar">
   <button onclick="toggleEdit()" id="editBtn">✏️ Bearbeiten</button>
   <button onclick="setFilter('all')" id="f-all">Alle</button>
-  <button onclick="setFilter('warn')" id="f-warn">⚠️ 2/3</button>
-  <button onclick="setFilter('danger')" id="f-danger">🚫 3/3</button>
+  <button onclick="setFilter('warn')" id="f-warn">⚠️ 1/2</button>
+  <button onclick="setFilter('danger')" id="f-danger">🚫 2/2</button>
   <button onclick="markUnaffectedAbsent()" id="markUnaffectedBtn" style="display:none">Nicht betroffene +1 Abw.</button>
   <button onclick="saveToServer()" id="localSaveBtn" style="display:none">💾 Lokal speichern</button>
   <button onclick="addUser()" id="addBtn" style="display:none">➕</button>
@@ -223,8 +235,18 @@ async function loadUsers() {
   } catch (error) {
     users = JSON.parse(JSON.stringify(defaultUsers));
   }
-  users.forEach(u => u.__edited = false);
+  // normalize/upgrade user objects: ensure date fields, cap absences to 2, remove all "present" flags
+  users.forEach(u => {
+    if (typeof u.excuseFrom === 'undefined') u.excuseFrom = null;
+    if (typeof u.excuseTo === 'undefined') u.excuseTo = null;
+    u.absent = Math.min((u.absent || 0), 2);
+    u.present = false; // entferne alle Mitglieder aus der Anwesenheit
+    u.__edited = false;
+  });
   sortUsers();
+  checkExcuses();
+  // re-check excuses periodically (every minute)
+  setInterval(checkExcuses, 60 * 1000);
   render();
 }
 
@@ -255,8 +277,8 @@ function sortUsers() {
 function render() {
   container.innerHTML = "";
   let filtered = users;
-  if (filter === "warn")   filtered = users.filter(u => u.absent == 2);
-  if (filter === "danger") filtered = users.filter(u => u.absent == 3);
+  if (filter === "warn")   filtered = users.filter(u => u.absent == 1);
+  if (filter === "danger") filtered = users.filter(u => u.absent == 2);
   
   if (searchFilter) {
     filtered = filtered.filter(u => u.name.toLowerCase().includes(searchFilter.toLowerCase()));
@@ -264,11 +286,12 @@ function render() {
 
   filtered.forEach(u => {
     let index = users.indexOf(u);
-    let cls = u.absent == 2 ? "warn" : u.absent == 3 ? "danger" : "";
-    let sym = u.absent == 2 ? "⚠️" : u.absent == 3 ? "🚫" : "";
+    let cls = u.absent == 1 ? "warn" : u.absent == 2 ? "danger" : "";
+    let sym = u.absent == 1 ? "⚠️" : u.absent == 2 ? "🚫" : "";
 
     let div = document.createElement("div");
-    div.className = "name-section " + cls;
+    const extraClass = (u.excuseFrom && u.excuseTo) ? 'has-excuse' : 'no-excuse';
+    div.className = "name-section " + cls + " " + extraClass;
     const nameAction = editMode ? `onclick="editName(${index})"` : "";
     const deleteBtn = editMode ? `<button class="delete-btn" onclick="deleteUser(${index})">✕</button>` : "";
     const absentButtons = editMode
@@ -284,15 +307,24 @@ function render() {
       ? `<button class="toggle-btn ${u.excuse ? 'active' : ''}" onclick="toggleExcuse(${index})">✔</button>`
       : `<button class="toggle-btn ${u.excuse ? 'active' : ''}" disabled>✔</button>`;
 
+    const dateRange = (u.excuseFrom && u.excuseTo)
+      ? `<div class="excuse-range">Entschuldigt: ${formatDate(u.excuseFrom)} – ${formatDate(u.excuseTo)}</div>`
+      : "";
+
     div.innerHTML = `
       ${deleteBtn}
-      <h2 ${nameAction}>${u.name}</h2>
-      <div class="absent-info">Abwesend: ${u.absent} / 3 ${sym}</div>
-      ${absentButtons}
-      <div class="row-label">Anwesend</div>
-      ${presentControl}
-      <div class="row-label">Entschuldigt</div>
-      ${excuseControl}
+      <div class="card-body">
+        <h2 ${nameAction}>${u.name}</h2>
+        <div class="absent-info">Abwesend: ${u.absent} / 2 ${sym}</div>
+        ${absentButtons}
+        <div class="row-label">Anwesend</div>
+        ${presentControl}
+        <div class="row-label">Entschuldigt</div>
+        ${excuseControl}
+      </div>
+      <div class="card-footer">
+        ${dateRange}
+      </div>
     `;
     container.appendChild(div);
   });
@@ -356,7 +388,7 @@ function markUnaffectedAbsent() {
   if (!editMode) return;
   if (!confirm("Allen nicht bearbeiteten Personen (außer Entschuldigte) +1 Abwesenheit geben?")) return;
   users.forEach(u => {
-    if (!u.__edited && !u.excuse && u.absent < 3) {
+    if (!u.__edited && !u.excuse && u.absent < 2) {
       u.present = false;
       u.absent++;
     }
@@ -366,7 +398,7 @@ function markUnaffectedAbsent() {
 
 function inc(i) {
   if (!editMode) return;
-  if (users[i].absent < 3) {
+  if (users[i].absent < 2) {
     users[i].absent++;
     users[i].__edited = true;
   }
@@ -392,9 +424,67 @@ function togglePresent(i) {
 
 function toggleExcuse(i) {
   if (!editMode) return;
-  users[i].excuse = !users[i].excuse;
-  users[i].__edited = true;
+  const u = users[i];
+  const curFrom = u.excuseFrom || '';
+  const curTo = u.excuseTo || '';
+  const start = prompt('Startdatum (YYYY-MM-DD), leer = Entfernen', curFrom);
+  if (!start) {
+    u.excuseFrom = null;
+    u.excuseTo = null;
+    u.excuse = false;
+    u.__edited = true;
+    render();
+    return;
+  }
+  const end = prompt('Enddatum (YYYY-MM-DD)', curTo || start);
+  // basic validation
+  const s = new Date(start);
+  const e = new Date(end);
+  if (isNaN(s.getTime()) || isNaN(e.getTime()) || s > e) {
+    alert('Ungültige Datumsangabe. Keine Änderung.');
+    return;
+  }
+  u.excuseFrom = start;
+  u.excuseTo = end;
+  u.excuse = isDateInRange(start, end);
+  u.__edited = true;
   render();
+}
+
+function isDateInRange(from, to) {
+  if (!from || !to) return false;
+  const today = new Date();
+  const s = new Date(from + 'T00:00:00');
+  const e = new Date(to + 'T23:59:59');
+  return today >= s && today <= e;
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  if (isNaN(d.getTime())) return iso;
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  return `${dd}.${mm}.${yyyy}`;
+}
+
+function checkExcuses() {
+  let changed = false;
+  users.forEach(u => {
+    const nowExcused = isDateInRange(u.excuseFrom, u.excuseTo);
+    if (u.excuse && !nowExcused) {
+      // excuse expired
+      u.excuse = false;
+      u.__edited = true;
+      changed = true;
+    } else if (!u.excuse && nowExcused) {
+      u.excuse = true;
+      u.__edited = true;
+      changed = true;
+    }
+  });
+  if (changed) render();
 }
 
 function resetAll() {
