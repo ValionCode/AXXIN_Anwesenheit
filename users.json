@@ -4,132 +4,170 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Chrxsz016",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Clezy",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "DDDerDennis",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Ibrahimovic_Goat",
     "absent": 1,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Ir0nAndy",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
-    "__edited": true
+    "__edited": true,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "KollegeKaktus",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Lucaprise",
     "absent": 1,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Memzter",
     "absent": 1,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "q0sk",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Rghy",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Schnitzel341",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Sgefinley",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Spange",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Thxrge7",
     "absent": 1,
     "present": false,
     "excuse": false,
-    "__edited": true
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "TyroTV",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "VortexSlay",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "Vulelegenda2",
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "xXL0uisXx",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
-    "__edited": false
+    "__edited": true,
+    "excuseFrom": null,
+    "excuseTo": null
   }
 ]

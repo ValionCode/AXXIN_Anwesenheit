@@ -235,12 +235,11 @@ async function loadUsers() {
   } catch (error) {
     users = JSON.parse(JSON.stringify(defaultUsers));
   }
-  // normalize/upgrade user objects: ensure date fields, cap absences to 2, remove all "present" flags
+  // normalize/upgrade user objects: ensure date fields and cap absences to 2
   users.forEach(u => {
     if (typeof u.excuseFrom === 'undefined') u.excuseFrom = null;
     if (typeof u.excuseTo === 'undefined') u.excuseTo = null;
     u.absent = Math.min((u.absent || 0), 2);
-    u.present = false; // entferne alle Mitglieder aus der Anwesenheit
     u.__edited = false;
   });
   sortUsers();
