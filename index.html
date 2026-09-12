@@ -436,32 +436,48 @@ function toggleExcuse(i) {
     return;
   }
   const end = prompt('Enddatum (YYYY-MM-DD)', curTo || start);
-  // basic validation
-  const s = new Date(start);
-  const e = new Date(end);
-  if (isNaN(s.getTime()) || isNaN(e.getTime()) || s > e) {
+  const s = parseDateInput(start);
+  const e = parseDateInput(end);
+  if (!s || !e || s.date > e.date) {
     alert('Ungültige Datumsangabe. Keine Änderung.');
     return;
   }
-  u.excuseFrom = start;
-  u.excuseTo = end;
-  u.excuse = isDateInRange(start, end);
+  u.excuseFrom = s.iso;
+  u.excuseTo = e.iso;
+  u.excuse = isDateInRange(s.iso, e.iso);
   u.__edited = true;
   render();
 }
 
+function parseDateInput(value) {
+  if (!value) return null;
+  const text = String(value).trim();
+  const isoMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
+  const germanMatch = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/.exec(text);
+  const year = isoMatch ? Number(isoMatch[1]) : germanMatch ? Number(germanMatch[3]) : NaN;
+  const month = isoMatch ? Number(isoMatch[2]) : germanMatch ? Number(germanMatch[2]) : NaN;
+  const day = isoMatch ? Number(isoMatch[3]) : germanMatch ? Number(germanMatch[1]) : NaN;
+  if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) return null;
+
+  const date = new Date(year, month - 1, day);
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return null;
+  return { date, iso: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}` };
+}
+
 function isDateInRange(from, to) {
-  if (!from || !to) return false;
+  const start = parseDateInput(from);
+  const end = parseDateInput(to);
+  if (!start || !end) return false;
   const today = new Date();
-  const s = new Date(from + 'T00:00:00');
-  const e = new Date(to + 'T23:59:59');
-  return today >= s && today <= e;
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  return todayDate >= start.date && todayDate <= end.date;
 }
 
 function formatDate(iso) {
   if (!iso) return '';
-  const d = new Date(iso + 'T00:00:00');
-  if (isNaN(d.getTime())) return iso;
+  const parsed = parseDateInput(iso);
+  if (!parsed) return iso;
+  const d = parsed.date;
   const dd = String(d.getDate()).padStart(2, '0');
   const mm = String(d.getMonth() + 1).padStart(2, '0');
   const yyyy = d.getFullYear();

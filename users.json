@@ -1,15 +1,33 @@
 [
   {
     "name": "Benjamln_94",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "CedricElias",
+    "absent": 0,
+    "present": true,
+    "excuse": false,
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
+  },
+  {
+    "name": "Chrxsz016",
+    "absent": 1,
+    "present": false,
+    "excuse": false,
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
+  },
+  {
+    "name": "Clezy",
     "absent": 2,
     "present": false,
     "excuse": false,
@@ -18,16 +36,7 @@
     "excuseTo": null
   },
   {
-    "name": "Chrxsz016",
-    "absent": 0,
-    "present": true,
-    "excuse": false,
-    "__edited": true,
-    "excuseFrom": null,
-    "excuseTo": null
-  },
-  {
-    "name": "Clezy",
+    "name": "DDDerDennis",
     "absent": 1,
     "present": false,
     "excuse": false,
@@ -36,20 +45,20 @@
     "excuseTo": null
   },
   {
-    "name": "DDDerDennis",
-    "absent": 0,
-    "present": true,
+    "name": "GutHildeGlock",
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "Ibrahimovic_Goat",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -58,7 +67,7 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -67,25 +76,25 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "Lucaprise",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "Memzter",
-    "absent": 1,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -94,7 +103,7 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -103,7 +112,7 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -113,39 +122,39 @@
     "present": false,
     "excuse": false,
     "__edited": false,
-    "excuseFrom": null,
-    "excuseTo": null
+    "excuseFrom": "2026-09-10",
+    "excuseTo": "2026-09-10"
   },
   {
     "name": "Spange",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "Thxrge7",
-    "absent": 1,
+    "absent": 2,
     "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "TyroTV",
-    "absent": 0,
-    "present": true,
+    "absent": 1,
+    "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "VortexSlay",
-    "absent": 2,
+    "absent": 1,
     "present": false,
     "excuse": false,
     "__edited": false,
@@ -157,7 +166,7 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -166,7 +175,7 @@
     "absent": 0,
     "present": true,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   }
