@@ -10,34 +10,16 @@
   },
   {
     "name": "Chrxsz016",
-    "absent": 2,
-    "present": false,
+    "absent": 0,
+    "present": true,
     "excuse": false,
-    "__edited": false,
+    "__edited": true,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "GutHildeGlock",
-    "absent": 0,
-    "present": true,
-    "excuse": false,
-    "__edited": true,
-    "excuseFrom": null,
-    "excuseTo": null
-  },
-  {
-    "name": "Ir0nAndy",
-    "absent": 0,
-    "present": true,
-    "excuse": false,
-    "__edited": true,
-    "excuseFrom": null,
-    "excuseTo": null
-  },
-  {
-    "name": "KollegeKaktus",
-    "absent": 2,
+    "absent": 1,
     "present": false,
     "excuse": false,
     "__edited": false,
@@ -45,11 +27,29 @@
     "excuseTo": null
   },
   {
-    "name": "Rghy",
+    "name": "Ir0nAndy",
+    "absent": 1,
+    "present": false,
+    "excuse": false,
+    "__edited": false,
+    "excuseFrom": null,
+    "excuseTo": null
+  },
+  {
+    "name": "KollegeKaktus",
     "absent": 0,
     "present": true,
     "excuse": false,
     "__edited": true,
+    "excuseFrom": null,
+    "excuseTo": null
+  },
+  {
+    "name": "Rghy",
+    "absent": 1,
+    "present": false,
+    "excuse": false,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -73,10 +73,10 @@
   },
   {
     "name": "TyroTV",
-    "absent": 0,
-    "present": true,
+    "absent": 2,
+    "present": false,
     "excuse": false,
-    "__edited": true,
+    "__edited": false,
     "excuseFrom": null,
     "excuseTo": null
   },
@@ -85,22 +85,22 @@
     "absent": 1,
     "present": false,
     "excuse": false,
-    "__edited": false,
+    "__edited": true,
     "excuseFrom": null,
     "excuseTo": null
   },
   {
     "name": "Vulelegenda2",
     "absent": 0,
-    "present": false,
+    "present": true,
     "excuse": false,
     "__edited": true,
-    "excuseFrom": "2026-10-02",
-    "excuseTo": "2026-10-05"
+    "excuseFrom": null,
+    "excuseTo": null
   },
   {
     "name": "xXL0uisXx",
-    "absent": 2,
+    "absent": 1,
     "present": false,
     "excuse": false,
     "__edited": false,
